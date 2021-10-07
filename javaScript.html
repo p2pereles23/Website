@@ -1,0 +1,108 @@
+<html>
+<head>
+<script language="javaScript">
+
+
+function guessing1()
+{
+/*  block comment   
+    Write an algorithm to create a guessing game.
+	Let the user know if the guess is too high or too low.
+	If they guess the number, alert this fact and tell them how many guesses it took them to guess the number.
+	
+	Generate a random number
+	Promt the user to enter a guess choosing a number 1-10
+	If it is higher or lower than the random number alert the user
+	If user does not guess correct alert user to guess again
+	If the user guess is correct alert the user they are correct and alert user how many guesses it took them and that they won the game.
+*/
+	var usersGuess = -1;
+	var numOfGuesses = 0; // camel case
+	var rand = Math.random()*10
+	rand = rand + 1;
+	rand = parseInt(rand);
+	
+	usersGuess = prompt ("What is your guess?")
+	
+
+	//loop while the user's guess is wrong
+
+	while( usersGuess != rand ) // Loop while the users answer is wrong
+	{
+	numOfGuesses = numOfGuesses + 1
+		if ( usersGuess < rand ) // guess is too low
+			// With an alert, tell the user the guess is too low
+		{
+		alert ("Thats too low!")
+			
+		}
+		else if ( usersGuess > rand ) // guess is too high
+		{
+			// With an alert, tell the user the guess is too high
+		alert ("Thats too high!")
+		}
+		
+			// prompt the user to enter a new number
+		
+			
+			usersGuess = prompt("Enter a number between 1 - 10: "); 
+	}
+	// Write code to prompt the user to enter a number. Store that in the correct variable. 
+	alert ("You got it, it took you "+numOfGuesses+" tries!")
+
+
+}      
+
+
+
+
+function greeting1()
+{
+    alert("Hello there!")// "Hello there!" is a parameter.
+
+}// end of greeting1()
+
+function greeting2()
+{
+    // = is the assignment operator.
+	// assignment stores what's on the right side into the element on the left.
+    var name = prompt("type your name");// "type your name" is a parameter.
+    alert("Greetings, " + name);
+}// end of greeting2()
+
+function greeting3()
+{
+     var answer = confirm("Do you want to play again?");
+	 alert(answer);
+     
+}//end of greeting3
+
+
+</script>
+</head>
+<body  background="images/questionmark.jpg">
+
+<h1>My First Java Script</h1>
+Click here to <a href="index.html">to go back to my home page.</a>
+         
+
+<input type="button" value="Play my guessing game" onclick="guessing1()"/></br>
+
+
+</br></br></br></br>
+
+
+
+<hr/>
+<input type="button" value="Click me" onclick="greeting1()"/></br>
+
+
+<hr/>
+<input type="button" value="Click to enter a name" onclick="greeting2()"/></br>
+<hr/>
+<input type="button" value="Click one more time please" onclick="greeting3()"/><br/>
+
+
+
+</body>
+</html>

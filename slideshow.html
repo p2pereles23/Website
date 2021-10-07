@@ -1,0 +1,137 @@
+<html>
+<head>
+
+<script language = "JavaScript">
+
+var clipList = [ "sounds/AppleTVIntro.mp3",
+				"sounds/DisneyPlusIntro.mp3",
+				"sounds/HuluIntro.mp3",
+				"sounds/NetflixIntro.mp3",
+				"sounds/AmazonPrimeVideoIntro.mp3",
+				"sounds/YoutubeIntro.mp3"           ]
+
+
+var picList = [ "images/slideshow/Slide1.jpg" ,
+				"images/slideshow/Slide2.jpg" ,
+				"images/slideshow/Slide3.jpg" ,
+				"images/slideshow/Slide4.jpg" ,
+				"images/slideshow/Slide5.jpg" ,
+				"images/slideshow/Slide6.jpg" ]
+
+
+
+var counter = 0;
+
+var timer;
+
+var autoStart = false;
+
+
+function next()
+{
+	var score = 1; // local variable
+	score = score + 1;
+	
+	document.getElementById("display").src = picList[counter];
+	document.getElementById("player").src = clipList[counter];
+	document.getElementById("player").play();
+	increment();
+	
+} // variable score is freed up.
+
+
+function run()
+{
+	if( autoStart == false ) 
+	{
+		autoStart = true;
+		document.getElementById("playButton").value = "Pause"
+	}
+	else
+	{
+		autoStart = false;
+		document.getElementById("playButton").value = "Play Slideshow"
+	}
+	
+	autoRun();
+}
+
+
+
+
+
+function autoRun()
+{
+	if( autoStart == true )
+	{
+	
+		next();
+		
+		timer = setTimeout("autoRun()", 5000);
+	}
+	else 
+	{
+		clearTimeout(timer);
+	}
+
+
+}
+
+function increment()
+{
+
+	if( counter == picList.length-1) 
+	{
+		counter = 0;
+	} 
+	else
+	{
+	counter = counter + 1;
+	}
+}
+
+
+/*
+function run()
+{
+    
+	next();
+	
+	var clipLength = clipList[counter].length;
+	//alert(clipLength)
+	
+	timer = setTimeout("run()", clipLength*200);
+	
+	
+	
+	
+}
+*/
+
+</script>
+
+
+
+</head>
+<body background="images/TV.jpeg">
+<center>
+<h1> Splendid Streaming Service Slideshow </h1>
+
+Click here to <a href="index.html">to go back to my home page.</a>
+
+<br/><br/>
+<input type = "button" value="Next Picture" onclick="next()"/>
+<input type = "button" value="Run Slideshow" onclick="run()" id="playButton" />
+
+<br/><br/>
+
+<img src="images/slideshow/Slide1.jpg" id="display"/>
+
+<audio id = "player"></audio>
+
+
+
+</center>
+
+</body>
+</html>
