@@ -1,0 +1,117 @@
+<html>
+<head>
+<script language="javaScript">
+	
+	var entrees = [ 
+					"images/partnerfoodpics/chickenandwaffles.jpg",
+					"images/partnerfoodpics/chilli dawg.jpg",
+					"images/partnerfoodpics/pizza.jpg",
+					"images/partnerfoodpics/pasta.jfif",
+					"images/partnerfoodpics/salmon.jpg"
+					];
+					
+	var sides = [
+					"images/partnerfoodpics/sides/cake.jpg",
+					"images/partnerfoodpics/sides/onionrings.webp",
+					"images/partnerfoodpics/sides/frenchfries.jpg",
+					"images/partnerfoodpics/sides/carrots.jpg",
+					"images/partnerfoodpics/sides/salad.jpg",
+					];
+					
+					
+	var dishType = 1;				
+	var courseList
+	var counter = 0;				
+	var score = 0;
+	function nextCourse(dish)
+	{
+		if (dish==0)
+		{
+			dish = 5;
+		}
+		score = score + dish;
+		counter = 0;
+		dishType = dishType + 1
+		nextPic(dishType)
+		
+	}
+
+	function nextPic(course)
+{
+	document.getElementById("start").style.visibility = "visible";
+	if (course == 1)
+	{
+		var courseList = entrees;
+		document.getElementById("display").src = courseList[counter];
+		increment();
+	}
+	else if (course == 2)
+	{
+		var courseList = sides;
+		document.getElementById("display").src = courseList[counter];
+		increment();
+	}
+	else
+	{
+	document.getElementById("giveScore").style.visibility = "hidden";
+	document.getElementById("start").style.visibility = "hidden";
+	document.getElementById("giveScore2").style.visibility = "visible";
+	document.getElementById("scoreBoard").value = score;
+		if (score < 5)
+		{
+			document.getElementById("health").value = "You Are Unhealthy, Reload Page To Try Again";
+		}
+		else
+		{
+			document.getElementById("health").value = "You Are Healthy!";
+		}
+	}
+	
+}
+	function increment()
+{
+	if(counter == entrees.length-1) 
+	{
+		counter = 0;
+	} 
+	else
+	{
+	counter = counter + 1;
+	}
+}
+	
+	
+	
+	
+	
+	
+	
+	
+</script>
+</head>
+<body bgcolor="lightblue">
+	<center>
+		<h1>Are you Healthy or Unhealthy?</h1>
+		<br/><br/><div id="giveScore2" style="visibility:hidden">
+		Your Health Score is
+		<input type="text" size=5 id ="scoreBoard"/> <br/><br/>
+		<input type="text" size=40 id ="health"/>
+		</div>
+		<div id="giveScore">
+		<img src="images/partnerfoodpics/starter.jpg" id="display" height="420"/>
+		<br/><br/>
+		<h2>Do you want to eat this?<h2>
+		
+		
+		<div id="start" style="visibility:hidden">
+		<input type ="button" value="Yes" onClick="nextCourse(counter)"/>
+		</div>
+		<input type ="button" value="No" onClick="nextPic(dishType)"/>
+		<br/>
+		<p>
+		<font size="2"> Press "No" to start
+		</div>
+		
+	</center>
+</body>
+</html> 
