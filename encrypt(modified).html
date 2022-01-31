@@ -1,0 +1,170 @@
+<html>
+<head>
+<script language="javaScript">
+
+var alpha = [ "a",
+             "b",  
+             "c",  
+             "d",  
+             "e",  
+             "f",  
+ "g",
+             "h",
+             "i",  
+             "j",  
+             "k",  
+             "l",  
+             "m",  
+             "n",  
+             "o",  
+             "p",  
+             "q",  
+             "r",  
+             "s",  
+             "t",  
+             "u",  
+             "v",  
+             "w",  
+             "x",  
+             "y",  
+             "z",
+             " "
+];
+
+var scrambled = [
+             "l",
+ "d",
+ "r",
+ "i",
+ "b",
+ "s",
+ "f",
+ "n",
+ "t",
+ "a",
+ "p",
+ "u",
+ "h",
+ "x",
+ "w",
+ "g",
+ "o",
+ " ",
+ "y",
+ "m",
+ "c",
+ "q",
+ "k",
+ "v",
+ "j",
+ "e",
+             "z"
+];
+
+var numberList;
+
+function secretMessage()
+{
+
+if( document.getElementById("unencrypt").value == "" )
+{
+if( document.getElementById("encrypt").value == "" )
+{
+alert("No data in either box");
+}
+else
+{
+document.getElementById("unencrypt").value = code(false)
+}
+
+}
+else 
+{
+if( document.getElementById("encrypt").value == "" )
+{
+document.getElementById("encrypt").value = code(true)
+}
+else
+{
+alert("Data in both. Please clear both boxes");
+}
+}
+
+
+}
+
+function code(amIEncrypting)
+{
+var firstList;
+var secondList;
+var firstBox;
+if (amIEncrypting == true)
+{
+firstList = alpha;
+secondList = scrambled;
+firstBox = document.getElementById("unencrypt").value
+}
+else 
+{
+firstList = scrambled;
+secondList = alpha;
+firstBox = document.getElementById("encrypt").value
+
+}
+
+numberList = new Array(firstBox.length)
+
+var counter = 0;
+while( counter < firstBox.length )
+{
+
+var letter = firstBox.substr(counter,1);
+var letIndex = firstList.indexOf(letter);
+numberList[counter] = letIndex;
+
+counter++;
+}
+alert(numberList);
+counter = 0;
+var answer = "";
+while( counter < firstBox.length )
+{
+
+var numListValue = numberList[counter];
+answer = answer + secondList[numListValue];
+
+counter++;
+}
+return answer;
+}
+
+
+function clearBoxes()
+{
+
+document.getElementById("unencrypt").value = "";
+
+document.getElementById("encrypt").value = "";
+
+}
+
+
+</script>
+</head>
+<body>
+<center>
+<h1>My Encryption App</h1>
+<br/><br/>
+<input type ="button" value="Encrypt" onClick="secretMessage()"/>
+<input type ="button" value="Clear" onClick="clearBoxes()"/>
+<br/><br/>
+
+Unencrypted Message
+<input type = "text" size="40" id="unencrypt"/>
+
+<br/><br/>
+Encrypted Message
+<input type = "text" size="40" id="encrypt"/>
+</center>
+</body>
+</html>
